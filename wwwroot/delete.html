@@ -1,0 +1,51 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <title>Delete Task</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" />
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark px-3">
+        <a class="navbar-brand" href="#">Task Manager</a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav ms-auto">
+                <li class="nav-item"><a class="nav-link" href="/pages/index">Home</a></li>
+                <li class="nav-item"><a class="nav-link" href="/pages/create">Create</a></li>
+                <li class="nav-item"><a class="nav-link" href="/pages/tasks">Tasks</a></li>
+                <li class="nav-item"><a class="nav-link" href="/pages/update">Update</a></li>
+                <li class="nav-item"><a class="nav-link active" href="#">Delete</a></li>
+                <li class="nav-item"><a class="nav-link" href="/pages/dashboard">Dashboard</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <div class="container py-4">
+        <h2 class="text-center">❌ Delete Task</h2>
+        <form id="deleteForm" class="mt-4">
+            <div class="mb-3">
+                <label class="form-label">Task ID to Delete</label>
+                <input type="number" class="form-control" id="taskId" required />
+            </div>
+            <button type="submit" class="btn btn-danger">Delete</button>
+        </form>
+    </div>
+
+    <script>
+        document.getElementById('deleteForm').addEventListener('submit', function (e) {
+            e.preventDefault();
+            const id = document.getElementById('taskId').value;
+
+            fetch('/api/TaskItems/' + id, { method: 'DELETE' })
+                .then(res => {
+                    if (res.ok) alert('✅ Task Deleted!');
+                    else alert('❌ Deletion Failed');
+                });
+        });
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

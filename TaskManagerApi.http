@@ -1,0 +1,44 @@
+@TaskManagerApi_HostAddress = http://localhost:5001
+
+### Get all tasks
+GET {{TaskManagerApi_HostAddress}}/api/TaskItems
+Accept: application/json
+
+###
+
+### Get a specific task by ID
+GET {{TaskManagerApi_HostAddress}}/api/TaskItems/1
+Accept: application/json
+
+###
+
+### Create a new task
+POST {{TaskManagerApi_HostAddress}}/api/TaskItems
+Content-Type: application/json
+
+{
+  "title": "Complete ASP.NET Project",
+  "description": "Implement full CRUD with UI",
+  "dueDate": "2025-04-15T23:59:59",
+  "isComplete": false
+}
+
+###
+
+### Update a task
+PUT {{TaskManagerApi_HostAddress}}/api/TaskItems/1
+Content-Type: application/json
+
+{
+  "id": 1,
+  "title": "Updated Task Title",
+  "description": "Updated description",
+  "dueDate": "2025-04-20T18:00:00",
+  "isComplete": true
+}
+
+###
+
+### Delete a task
+DELETE {{TaskManagerApi_HostAddress}}/api/TaskItems/1
+Accept: application/json
